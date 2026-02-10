@@ -14,7 +14,6 @@
 - **Historical Context**: Learn about each thinker's background, era, and key contributions
 - **Quick Debate Mode**: Jump into debates on pre-selected topics
 - **Results Dashboard**: Detailed performance metrics showing strengths and weaknesses
-- **🔄 Automatic API Key Rotation**: Smart failover between multiple OpenRouter accounts for extended usage
 
 ## Tech Stack
 
@@ -30,7 +29,7 @@
 
 - Node.js 20 or higher
 - npm or yarn
-- OpenRouter API key(s) (free at [openrouter.ai](https://openrouter.ai/keys))
+- OpenRouter API key (free at [openrouter.ai](https://openrouter.ai/keys))
 
 ### Local Development
 
@@ -49,19 +48,9 @@
    
    Create a `.env.local` file in the root directory:
    ```bash
-   # Required: Primary API key
-   VITE_OPENROUTER_API_KEY_1=your_first_api_key_here
-   
-   # Optional: Additional keys for automatic rotation
-   VITE_OPENROUTER_API_KEY_2=your_second_api_key_here
-   VITE_OPENROUTER_API_KEY_3=your_third_api_key_here
+   # Required: Openrouter API key
+   VITE_OPENROUTER_API_KEY_1=your_api_key_here
    ```
-
-   **API Key Rotation Benefits:**
-   - Each OpenRouter free account gets ~50 requests/day
-   - With 3 keys, you get ~150 requests/day total
-   - Automatic failover when one key hits rate limits
-   - Smart rotation persists across browser sessions
 
    Get your free API keys from [OpenRouter](https://openrouter.ai/keys)
 
@@ -83,13 +72,11 @@ The repository is configured for automatic deployment to GitHub Pages using GitH
 
 ### Setup Steps:
 
-1. **Add OpenRouter API Keys to GitHub Secrets**
+1. **Add OpenRouter API Key to GitHub Secrets**
    - Go to your repository settings
    - Navigate to **Settings → Secrets and variables → Actions**
-   - Add these secrets:
+   - Add this secret:
      - `VITE_OPENROUTER_API_KEY_1` (required)
-     - `VITE_OPENROUTER_API_KEY_2` (optional)
-     - `VITE_OPENROUTER_API_KEY_3` (optional)
 
 2. **Enable GitHub Pages**
    - Go to **Settings → Pages**
@@ -102,35 +89,8 @@ The repository is configured for automatic deployment to GitHub Pages using GitH
 
 4. **Access Your App**
    - Once deployed, your app will be available at:
-     `https://hongpenggg.github.io/echoes/`
+     `https://[your-username].github.io/[repo-name]/`
 
-## API Key Rotation System
-
-### How It Works
-
-The app includes an intelligent API key rotation system that:
-
-1. **Detects Rate Limits**: Automatically identifies HTTP 429 errors and rate limit messages
-2. **Switches Keys**: Seamlessly rotates to the next available API key
-3. **Persists State**: Remembers which key to use via localStorage
-4. **Daily Reset**: Automatically resets failed keys each day when limits refresh
-5. **Console Logging**: Provides clear feedback about which key is active
-
-### Console Messages
-
-You'll see helpful logs like:
-- `🔑 API Key Rotator initialized with 3 key(s)`
-- `📡 Using API key 1/3 (0 failed)`
-- `⚠️ Rate limit hit on API key #1`
-- `🔄 Switched to API key #2`
-- `🔄 Reset all failed API keys` (daily)
-
-### Usage Tips
-
-- **Minimum 1 key required**: The app needs at least one valid API key
-- **Up to 3 keys supported**: Configure 2-3 keys for maximum daily requests
-- **Automatic recovery**: Failed keys are retried the next day
-- **No manual intervention**: The system handles everything automatically
 
 ## Project Structure
 
@@ -170,7 +130,6 @@ echoes/
 - All AI responses are structured with JSON to provide consistent analysis
 - The debate scoring system evaluates logical strength, evidence quality, and rhetoric
 - No user authentication required - runs in guest mode for all users
-- API key rotation state persists in browser localStorage
 
 ## Troubleshooting
 
