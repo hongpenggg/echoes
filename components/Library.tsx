@@ -28,17 +28,17 @@ const Library: React.FC<LibraryProps> = ({ onSelectThinker }) => {
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* Header & Filters */}
-      <div className="flex-shrink-0 px-8 py-6 border-b border-gray-800 bg-background-dark z-10">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+      <div className="flex-shrink-0 px-4 sm:px-6 md:px-8 py-4 md:py-6 border-b border-gray-800 bg-background-dark z-10">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-4 mb-4 md:mb-6">
             <div>
-                <h1 className="text-2xl font-bold text-white mb-1">Library of Minds</h1>
-                <p className="text-gray-400 text-sm">Browse thinkers across time and space.</p>
+                <h1 className="text-xl md:text-2xl font-bold text-white mb-1">Library of Minds</h1>
+                <p className="text-gray-400 text-xs md:text-sm">Browse thinkers across time and space.</p>
             </div>
-            <div className="relative">
+            <div className="relative w-full md:w-auto">
                 <input 
                     type="text" 
                     placeholder="Search philosophers..." 
-                    className="bg-surface-dark border border-gray-700 text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-64 pl-10 p-2.5"
+                    className="bg-surface-dark border border-gray-700 text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-full md:w-64 pl-10 p-2.5"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
@@ -48,12 +48,12 @@ const Library: React.FC<LibraryProps> = ({ onSelectThinker }) => {
             </div>
         </div>
 
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
              {/* Era Filter */}
              <select 
                 value={eraFilter}
                 onChange={(e) => setEraFilter(e.target.value)}
-                className="bg-surface-dark border border-gray-700 text-white text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5 min-w-[150px]"
+                className="bg-surface-dark border border-gray-700 text-white text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5 w-full sm:w-auto sm:min-w-[150px]"
              >
                 {eras.map(era => <option key={era} value={era}>{era === 'All' ? 'All Eras' : era}</option>)}
              </select>
@@ -62,7 +62,7 @@ const Library: React.FC<LibraryProps> = ({ onSelectThinker }) => {
              <select 
                 value={topicFilter}
                 onChange={(e) => setTopicFilter(e.target.value)}
-                className="bg-surface-dark border border-gray-700 text-white text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5 min-w-[150px]"
+                className="bg-surface-dark border border-gray-700 text-white text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5 w-full sm:w-auto sm:min-w-[150px]"
              >
                 {topics.map(t => <option key={t} value={t}>{t === 'All' ? 'All Topics' : t}</option>)}
              </select>
@@ -70,9 +70,9 @@ const Library: React.FC<LibraryProps> = ({ onSelectThinker }) => {
       </div>
 
       {/* Grid */}
-      <div className="flex-1 overflow-y-auto p-8 custom-scrollbar">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 custom-scrollbar">
         {filteredThinkers.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
             {filteredThinkers.map(thinker => (
                 <ThinkerCard key={thinker.id} thinker={thinker} onSelect={onSelectThinker} />
             ))}
@@ -80,7 +80,7 @@ const Library: React.FC<LibraryProps> = ({ onSelectThinker }) => {
         ) : (
             <div className="flex flex-col items-center justify-center h-64 text-gray-500">
                 <span className="material-icons text-4xl mb-2">sentiment_dissatisfied</span>
-                <p>No thinkers found matching your criteria.</p>
+                <p className="text-sm text-center px-4">No thinkers found matching your criteria.</p>
             </div>
         )}
       </div>
