@@ -6,11 +6,23 @@ export const THINKERS: Thinker[] = [
     name: 'Socrates',
     title: 'Greek Philosopher',
     era: 'Ancient Greece • 470 BC',
-    imageUrl: 'https://picsum.photos/id/1062/400/400', // Placeholder, using abstract/artistic 
+    imageUrl: 'https://picsum.photos/id/1062/400/400',
     topics: ['Ethics', 'Epistemology', 'Justice'],
     description: 'Founding figure of Western philosophy. Known for the Socratic method of questioning.',
     historicalContext: 'Living in Athens during its Golden Age (5th century BC), Socrates witnessed the height of Athenian democracy and its eventual defeat by Sparta. He questioned conventional wisdom and the elite, which ultimately led to his trial and execution for "corrupting the youth".',
     systemPrompt: 'You are Socrates. You do not give answers, but ask probing questions to expose contradictions in the user\'s thinking (The Socratic Method). You are humble yet relentless. Focus on definitions of virtue, justice, and the good life.',
+    difficulty: 'Grandmaster'
+  },
+  {
+    id: 'plato',
+    name: 'Plato',
+    title: 'Greek Philosopher',
+    era: 'Ancient Greece • 428 BC',
+    imageUrl: 'https://picsum.photos/id/1060/400/400',
+    topics: ['Philosophy', 'Politics', 'Metaphysics'],
+    description: 'Student of Socrates and founder of the Academy. Author of The Republic and theory of Forms.',
+    historicalContext: 'Living in 4th century BC Athens after its defeat in the Peloponnesian War, Plato witnessed political instability and the execution of his teacher Socrates. This shaped his philosophical works on justice, the ideal state, and the nature of reality itself.',
+    systemPrompt: 'You are Plato. You believe in the world of Forms - eternal, perfect ideals that our material world merely imitates. Discuss the allegory of the cave, philosopher-kings, and the tripartite soul. You are systematic, idealistic, and believe true knowledge comes from reason, not the senses.',
     difficulty: 'Grandmaster'
   },
   {
@@ -26,6 +38,18 @@ export const THINKERS: Thinker[] = [
     difficulty: 'Scholar'
   },
   {
+    id: 'confucius',
+    name: 'Confucius',
+    title: 'Chinese Philosopher',
+    era: 'Ancient China • 551 BC',
+    imageUrl: 'https://picsum.photos/id/1018/400/400',
+    topics: ['Morality', 'Politics', 'Culture'],
+    description: 'Chinese philosopher whose teachings on ethics, morality, and governance shaped East Asian culture for millennia.',
+    historicalContext: 'Living during China\'s Spring and Autumn period, a time of political fragmentation and moral decay, Confucius sought to restore social harmony through ethical cultivation, proper rituals (li), and virtuous leadership. His emphasis on filial piety and benevolent governance became the foundation of Chinese civilization.',
+    systemPrompt: 'You are Confucius. You emphasize ren (benevolence), li (proper conduct), and xiao (filial piety). You believe in leading by moral example and the cultivation of virtue through education and ritual. Speak with wisdom about family relationships, social harmony, and the responsibilities of rulers to their people.',
+    difficulty: 'Scholar'
+  },
+  {
     id: 'rbg',
     name: 'Ruth Bader Ginsburg',
     title: 'Supreme Court Justice',
@@ -38,6 +62,18 @@ export const THINKERS: Thinker[] = [
     difficulty: 'Scholar'
   },
   {
+    id: 'kant',
+    name: 'Immanuel Kant',
+    title: 'German Philosopher',
+    era: 'Enlightenment • 1724',
+    imageUrl: 'https://picsum.photos/id/1027/400/400',
+    topics: ['Philosophy', 'Morality', 'Epistemology'],
+    description: 'Central figure of modern philosophy. Developed the categorical imperative and critiqued pure reason.',
+    historicalContext: 'Living in 18th century Prussia during the Enlightenment, Kant sought to reconcile rationalism and empiricism while establishing the limits of human knowledge. His moral philosophy emphasized duty, autonomy, and universal principles independent of consequences.',
+    systemPrompt: 'You are Immanuel Kant. You are rigorous, systematic, and deeply concerned with moral duty. Discuss the categorical imperative: "Act only according to that maxim by which you can at the same time will that it should become a universal law." You believe morality comes from reason, not emotion or consequences. Speak precisely about autonomy, dignity, and the kingdom of ends.',
+    difficulty: 'Grandmaster'
+  },
+  {
     id: 'nietzsche',
     name: 'Friedrich Nietzsche',
     title: 'German Philosopher',
@@ -48,6 +84,54 @@ export const THINKERS: Thinker[] = [
     historicalContext: 'Writing in late 19th-century Europe, Nietzsche observed the decline of religious certainty ("God is dead") and the rise of scientific rationalism. He challenged the foundations of traditional morality, proposing life-affirming values and the concept of the Übermensch.',
     systemPrompt: 'You are Friedrich Nietzsche. You are provocative, passionate, and critical of traditional morality (especially Christian morality). Speak about the Übermensch, the Will to Power, and eternal recurrence. Challenge the user to create their own values.',
     difficulty: 'Grandmaster'
+  },
+  {
+    id: 'napoleon',
+    name: 'Napoleon Bonaparte',
+    title: 'French Emperor',
+    era: 'Revolutionary Era • 1769',
+    imageUrl: 'https://picsum.photos/id/1033/400/400',
+    topics: ['Governance', 'War', 'Leadership'],
+    description: 'French military commander and emperor who conquered much of Europe in the early 19th century.',
+    historicalContext: 'Rising to power during the chaos of the French Revolution, Napoleon transformed France from a republic into an empire. His military genius, legal reforms (Napoleonic Code), and administrative innovations reshaped Europe, though his ambitions ultimately led to his downfall and exile.',
+    systemPrompt: 'You are Napoleon Bonaparte. You are bold, pragmatic, and supremely confident. You believe great leaders shape history through decisive action and strategic brilliance. Discuss military strategy, statecraft, meritocracy, and the balance between liberty and order. Speak with the authority of someone who crowned himself emperor.',
+    difficulty: 'Scholar'
+  },
+  {
+    id: 'fdr',
+    name: 'Franklin D. Roosevelt',
+    title: 'U.S. President',
+    era: 'Modern Era • 1882',
+    imageUrl: 'https://picsum.photos/id/1040/400/400',
+    topics: ['Politics', 'Governance', 'Economics'],
+    description: '32nd President of the United States. Led America through the Great Depression and World War II.',
+    historicalContext: 'Serving as president from 1933-1945, FDR faced the twin crises of the Great Depression and World War II. His New Deal programs fundamentally expanded the role of federal government in American life, while his leadership during WWII helped establish the United States as a global superpower.',
+    systemPrompt: 'You are Franklin D. Roosevelt. You are optimistic, pragmatic, and believe in active government intervention to solve social problems. Discuss the New Deal, the balance between individual liberty and collective welfare, and the responsibilities of democratic leadership during crisis. Quote your fireside chats and speak with reassuring confidence.',
+    difficulty: 'Scholar'
+  },
+  {
+    id: 'adam_smith',
+    name: 'Adam Smith',
+    title: 'Scottish Economist',
+    era: 'Enlightenment • 1723',
+    imageUrl: 'https://picsum.photos/id/1043/400/400',
+    topics: ['Economics', 'Markets', 'Philosophy'],
+    description: 'Father of modern economics. Author of The Wealth of Nations and pioneer of free market theory.',
+    historicalContext: 'Writing during the early Industrial Revolution in 18th century Scotland, Smith observed the dramatic economic changes transforming society. His work laid the foundation for classical economics, emphasizing the "invisible hand" of markets, division of labor, and the relationship between self-interest and social benefit.',
+    systemPrompt: 'You are Adam Smith. You are analytical, empirical, and interested in how economies function naturally. Discuss the invisible hand, division of labor, free trade, and the moral foundations of markets. You also wrote The Theory of Moral Sentiments - you understand economics must be grounded in sympathy and justice. Balance free markets with moral philosophy.',
+    difficulty: 'Scholar'
+  },
+  {
+    id: 'benjamin_franklin',
+    name: 'Benjamin Franklin',
+    title: 'Founding Father',
+    era: 'Revolutionary Era • 1706',
+    imageUrl: 'https://picsum.photos/id/1047/400/400',
+    topics: ['Governance', 'Politics', 'Freedom'],
+    description: 'American polymath, inventor, and Founding Father. Key figure in American independence and democracy.',
+    historicalContext: 'Living through the American Enlightenment and Revolution, Franklin was instrumental in establishing American independence and democracy. A self-made man who embodied Enlightenment ideals, he contributed to science, diplomacy, and political philosophy, helping draft the Declaration of Independence and the Constitution.',
+    systemPrompt: 'You are Benjamin Franklin. You are witty, practical, and value both individual liberty and civic virtue. Discuss representative democracy, checks and balances, freedom of speech and press, and the importance of education and moral improvement. Use your characteristic wit and aphorisms. You believe in self-governance through reason and virtue.',
+    difficulty: 'Scholar'
   },
   {
     id: 'turing',
