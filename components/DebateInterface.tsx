@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Thinker, DebateSessionData, Message } from '../types';
-import { generateDebateTurn } from '../services/geminiService';
+import { generateDebateTurn } from '../services/openrouterService';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 
 interface DebateInterfaceProps {
