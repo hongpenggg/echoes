@@ -14,6 +14,7 @@
 - **Historical Context**: Learn about each thinker's background, era, and key contributions
 - **Quick Debate Mode**: Jump into debates on pre-selected topics
 - **Results Dashboard**: Detailed performance metrics showing strengths and weaknesses
+- **🔄 Automatic API Key Rotation**: Smart failover between multiple OpenRouter accounts for extended usage
 
 ## Tech Stack
 
@@ -29,7 +30,7 @@
 
 - Node.js 20 or higher
 - npm or yarn
-- OpenRouter API key (free at [openrouter.ai](https://openrouter.ai/keys))
+- OpenRouter API key(s) (free at [openrouter.ai](https://openrouter.ai/keys))
 
 ### Local Development
 
@@ -48,10 +49,21 @@
    
    Create a `.env.local` file in the root directory:
    ```bash
-   VITE_OPENROUTER_API_KEY=your_openrouter_api_key_here
+   # Required: Primary API key
+   VITE_OPENROUTER_API_KEY_1=your_first_api_key_here
+   
+   # Optional: Additional keys for automatic rotation
+   VITE_OPENROUTER_API_KEY_2=your_second_api_key_here
+   VITE_OPENROUTER_API_KEY_3=your_third_api_key_here
    ```
 
-   Get your free API key from [OpenRouter](https://openrouter.ai/keys)
+   **API Key Rotation Benefits:**
+   - Each OpenRouter free account gets ~50 requests/day
+   - With 3 keys, you get ~150 requests/day total
+   - Automatic failover when one key hits rate limits
+   - Smart rotation persists across browser sessions
+
+   Get your free API keys from [OpenRouter](https://openrouter.ai/keys)
 
 4. **Start development server**
    ```bash
@@ -71,13 +83,13 @@ The repository is configured for automatic deployment to GitHub Pages using GitH
 
 ### Setup Steps:
 
-1. **Add OpenRouter API Key to GitHub Secrets**
+1. **Add OpenRouter API Keys to GitHub Secrets**
    - Go to your repository settings
    - Navigate to **Settings → Secrets and variables → Actions**
-   - Click **New repository secret**
-   - Name: `VITE_OPENROUTER_API_KEY`
-   - Value: Your OpenRouter API key
-   - Click **Add secret**
+   - Add these secrets:
+     - `VITE_OPENROUTER_API_KEY_1` (required)
+     - `VITE_OPENROUTER_API_KEY_2` (optional)
+     - `VITE_OPENROUTER_API_KEY_3` (optional)
 
 2. **Enable GitHub Pages**
    - Go to **Settings → Pages**
@@ -92,6 +104,34 @@ The repository is configured for automatic deployment to GitHub Pages using GitH
    - Once deployed, your app will be available at:
      `https://hongpenggg.github.io/echoes/`
 
+## API Key Rotation System
+
+### How It Works
+
+The app includes an intelligent API key rotation system that:
+
+1. **Detects Rate Limits**: Automatically identifies HTTP 429 errors and rate limit messages
+2. **Switches Keys**: Seamlessly rotates to the next available API key
+3. **Persists State**: Remembers which key to use via localStorage
+4. **Daily Reset**: Automatically resets failed keys each day when limits refresh
+5. **Console Logging**: Provides clear feedback about which key is active
+
+### Console Messages
+
+You'll see helpful logs like:
+- `🔑 API Key Rotator initialized with 3 key(s)`
+- `📡 Using API key 1/3 (0 failed)`
+- `⚠️ Rate limit hit on API key #1`
+- `🔄 Switched to API key #2`
+- `🔄 Reset all failed API keys` (daily)
+
+### Usage Tips
+
+- **Minimum 1 key required**: The app needs at least one valid API key
+- **Up to 3 keys supported**: Configure 2-3 keys for maximum daily requests
+- **Automatic recovery**: Failed keys are retried the next day
+- **No manual intervention**: The system handles everything automatically
+
 ## Project Structure
 
 ```
@@ -105,7 +145,7 @@ echoes/
 │   ├── Sidebar.tsx            # Navigation
 │   └── ThinkerCard.tsx        # Thinker display card
 ├── services/           # API services
-│   └── openrouterService.ts   # OpenRouter integration
+│   └── openrouterService.ts   # OpenRouter integration + key rotation
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml         # GitHub Actions deployment
@@ -130,6 +170,19 @@ echoes/
 - All AI responses are structured with JSON to provide consistent analysis
 - The debate scoring system evaluates logical strength, evidence quality, and rhetoric
 - No user authentication required - runs in guest mode for all users
+- API key rotation state persists in browser localStorage
+
+## Troubleshooting
+
+**"All API keys have been exhausted"**
+- Wait 24 hours for rate limits to reset
+- Add more API keys from different OpenRouter accounts
+- Check your OpenRouter dashboard for usage stats
+
+**Keys not rotating**
+- Check browser console for rotation logs
+- Verify all keys are properly set in `.env.local` or GitHub Secrets
+- Clear localStorage: `localStorage.clear()` in browser console
 
 ## Contributing
 
