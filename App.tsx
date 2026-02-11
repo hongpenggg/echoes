@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import Home from './components/Home';
 import Library from './components/Library';
+import School from './components/School';
 import QuickDebate from './components/QuickDebate';
 import DebateInterface from './components/DebateInterface';
 import Results from './components/Results';
@@ -116,6 +117,10 @@ const App: React.FC = () => {
 
           {currentView === ViewState.LIBRARY && (
             <Library onSelectThinker={(t) => handleStartDebate(t, t.topics[0])} />
+          )}
+
+          {currentView === ViewState.SCHOOL && (
+            <School />
           )}
           
           {currentView === ViewState.QUICK_DEBATE && (
