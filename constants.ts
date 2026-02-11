@@ -244,8 +244,28 @@ export const THINKERS: Thinker[] = [
 ];
 
 export const QUICK_TOPICS = [
-  { category: 'Technology', title: 'The Morality of AI', desc: 'Should artificial consciousness be granted rights?' },
-  { category: 'Economics', title: 'Universal Basic Income', desc: 'Is guaranteed income essential or a hindrance?' },
-  { category: 'Philosophy', title: 'Stoicism in Modern Age', desc: 'Can ancient self-control solve modern anxiety?' },
-  { category: 'Science', title: 'The Ethics of Gene Editing', desc: 'Drawing the line between curing and designing.' },
+  { category: 'Technology', title: 'The Morality of AI', desc: 'Should artificial consciousness be granted rights?', suggestedThinkerId: 'turing' },
+  { category: 'Economics', title: 'Universal Basic Income', desc: 'Is guaranteed income essential or a hindrance?', suggestedThinkerId: 'adam_smith' },
+  { category: 'Philosophy', title: 'Stoicism in Modern Age', desc: 'Can ancient self-control solve modern anxiety?', suggestedThinkerId: 'socrates' },
+  { category: 'Science', title: 'The Ethics of Gene Editing', desc: 'Drawing the line between curing and designing.', suggestedThinkerId: 'einstein' },
+  { category: 'Literature', title: 'Art as Moral Force', desc: 'Can literature change society and inspire justice?', suggestedThinkerId: 'victor_hugo' },
+  { category: 'Psychology', title: 'Free Will vs Determinism', desc: 'Are we masters of our fate or prisoners of our psyche?', suggestedThinkerId: 'freud' },
+  { category: 'Politics', title: 'Democracy vs Authoritarianism', desc: 'Which system truly serves the people best?', suggestedThinkerId: 'benjamin_franklin' },
+  { category: 'War', title: 'Just War Theory', desc: 'When, if ever, is violence morally justified?', suggestedThinkerId: 'sun_tzu' },
+  { category: 'Law', title: 'Justice vs Mercy', desc: 'Should legal systems prioritize punishment or rehabilitation?', suggestedThinkerId: 'rbg' },
+  { category: 'Philosophy', title: 'Meaning of Suffering', desc: 'Does suffering have inherent purpose or meaning?', suggestedThinkerId: 'nietzsche' },
+  { category: 'Governance', title: 'Leadership in Crisis', desc: 'What virtues must leaders possess in times of turmoil?', suggestedThinkerId: 'fdr' },
+  { category: 'Literature', title: 'Tragedy and the Human Condition', desc: 'What do tragic stories reveal about human nature?', suggestedThinkerId: 'shakespeare' },
+];
+
+// Featured challenges for carousel
+export const FEATURED_CHALLENGES = [
+  { thinkerId: 'caesar', challenge: 'Defend democracy against the efficiency of autocracy' },
+  { thinkerId: 'socrates', challenge: 'Define justice without contradicting yourself' },
+  { thinkerId: 'nietzsche', challenge: 'Justify traditional morality in a godless world' },
+  { thinkerId: 'einstein', challenge: 'Explain why time is not absolute' },
+  { thinkerId: 'freud', challenge: 'Prove you understand your own motivations' },
+  { thinkerId: 'shakespeare', challenge: 'Argue that ambition is a virtue, not a vice' },
+  { thinkerId: 'rbg', challenge: 'Debate the limits of constitutional interpretation' },
+  { thinkerId: 'confucius', challenge: 'Balance individual freedom with social harmony' },
 ];
