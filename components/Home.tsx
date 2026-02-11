@@ -1,5 +1,5 @@
 import React from 'react';
-import { THINKERS } from '../constants';
+import { THINKERS, FEATURED_CHALLENGES } from '../constants';
 import { Thinker } from '../types';
 
 interface HomeProps {
@@ -7,44 +7,116 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ onStartDebate }) => {
-  const featuredThinker = THINKERS.find(t => t.id === 'caesar') || THINKERS[0];
+  const [currentChallengeIndex, setCurrentChallengeIndex] = React.useState(0);
+  const [isTransitioning, setIsTransitioning] = React.useState(false);
+
+  // Auto-rotate carousel every 5 seconds
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [currentChallengeIndex]);
+
+  const handleNext = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentChallengeIndex((prev) => (prev + 1) % FEATURED_CHALLENGES.length);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
+  const handlePrev = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentChallengeIndex((prev) => 
+        prev === 0 ? FEATURED_CHALLENGES.length - 1 : prev - 1
+      );
+      setIsTransitioning(false);
+    }, 300);
+  };
+
+  const currentChallenge = FEATURED_CHALLENGES[currentChallengeIndex];
+  const featuredThinker = THINKERS.find(t => t.id === currentChallenge.thinkerId) || THINKERS[0];
 
   return (
     <div className="h-full overflow-y-auto custom-scrollbar">
-       {/* Hero Section */}
+       {/* Hero Section with Carousel */}
        <section className="relative w-full min-h-[400px] md:h-[500px] overflow-hidden">
             <div className="absolute inset-0 bg-surface-dark">
                 <img 
                     src={featuredThinker.imageUrl} 
                     alt="Background" 
-                    className="w-full h-full object-cover opacity-20 grayscale mix-blend-overlay blur-sm" 
+                    className={`w-full h-full object-cover opacity-20 grayscale mix-blend-overlay blur-sm transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-20'}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/90 to-transparent"></div>
             </div>
 
             <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col lg:flex-row items-center lg:justify-between py-8 md:py-0">
-                <div className="max-w-2xl z-20 pt-4 md:pt-10 text-center lg:text-left">
+                <div className={`max-w-2xl z-20 pt-4 md:pt-10 text-center lg:text-left transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
                     <div className="inline-flex items-center px-3 py-1 rounded-full border border-accent-gold/30 bg-accent-gold/10 text-accent-gold text-xs font-medium mb-4 md:mb-6 backdrop-blur-sm animate-pulse">
                         <span className="material-icons text-[14px] mr-1.5">auto_awesome</span>
-                        Featured Challenge
+                        Featured Challenge {currentChallengeIndex + 1}/{FEATURED_CHALLENGES.length}
                     </div>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight tracking-tight">
-                        Challenge <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-gold to-yellow-200">{featuredThinker.name}</span> on Strategy
+                        Challenge <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-gold to-yellow-200">{featuredThinker.name}</span>
                     </h1>
                     <p className="text-base md:text-lg text-gray-300 mb-6 md:mb-8 max-w-xl leading-relaxed mx-auto lg:mx-0">
-                        Step into the Roman Senate. Discuss the nature of power, leadership, and the Rubicon with the dictator perpetuo himself.
+                        {currentChallenge.challenge}
                     </p>
-                    <button 
-                        onClick={() => onStartDebate(featuredThinker)}
-                        className="px-6 md:px-8 py-3 md:py-3.5 bg-accent-gold hover:bg-yellow-500 text-black font-bold rounded-lg shadow-lg shadow-accent-gold/20 transition-all flex items-center hover:scale-105 mx-auto lg:mx-0 text-sm md:text-base"
-                    >
-                        <span className="material-icons mr-2 text-xl">play_arrow</span>
-                        Accept Challenge
-                    </button>
+                    <div className="flex flex-col sm:flex-row gap-3 items-center mx-auto lg:mx-0 justify-center lg:justify-start">
+                        <button 
+                            onClick={() => onStartDebate(featuredThinker)}
+                            className="px-6 md:px-8 py-3 md:py-3.5 bg-accent-gold hover:bg-yellow-500 text-black font-bold rounded-lg shadow-lg shadow-accent-gold/20 transition-all flex items-center hover:scale-105 text-sm md:text-base"
+                        >
+                            <span className="material-icons mr-2 text-xl">play_arrow</span>
+                            Accept Challenge
+                        </button>
+                        
+                        {/* Carousel Controls */}
+                        <div className="flex gap-2">
+                            <button 
+                                onClick={handlePrev}
+                                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center transition-colors border border-white/20"
+                                aria-label="Previous challenge"
+                            >
+                                <span className="material-icons text-white text-xl">chevron_left</span>
+                            </button>
+                            <button 
+                                onClick={handleNext}
+                                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center transition-colors border border-white/20"
+                                aria-label="Next challenge"
+                            >
+                                <span className="material-icons text-white text-xl">chevron_right</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Carousel Indicators */}
+                    <div className="flex gap-2 mt-6 justify-center lg:justify-start">
+                        {FEATURED_CHALLENGES.map((_, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => {
+                                    setIsTransitioning(true);
+                                    setTimeout(() => {
+                                        setCurrentChallengeIndex(idx);
+                                        setIsTransitioning(false);
+                                    }, 300);
+                                }}
+                                className={`h-1 rounded-full transition-all ${
+                                    idx === currentChallengeIndex 
+                                        ? 'w-8 bg-accent-gold' 
+                                        : 'w-4 bg-white/30 hover:bg-white/50'
+                                }`}
+                                aria-label={`Go to challenge ${idx + 1}`}
+                            />
+                        ))}
+                    </div>
                 </div>
 
                 {/* Featured Card - Hidden on mobile, visible on tablet+ */}
-                <div className="hidden md:block relative w-[280px] lg:w-[320px] h-[380px] lg:h-[420px] bg-surface-darker rounded-xl border border-accent-gold/30 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform hover:-translate-y-2 transition-transform duration-500 z-10 mt-6 lg:mt-0 lg:mr-12">
+                <div className={`hidden md:block relative w-[280px] lg:w-[320px] h-[380px] lg:h-[420px] bg-surface-darker rounded-xl border border-accent-gold/30 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform hover:-translate-y-2 transition-all duration-500 z-10 mt-6 lg:mt-0 lg:mr-12 ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
                     <div className="h-3/4 w-full overflow-hidden rounded-t-xl relative">
                         <div className="absolute inset-0 bg-gradient-to-t from-surface-darker to-transparent z-10"></div>
                         <img className="w-full h-full object-cover grayscale-0 filter contrast-125" src={featuredThinker.imageUrl} alt={featuredThinker.name} />
@@ -52,9 +124,10 @@ const Home: React.FC<HomeProps> = ({ onStartDebate }) => {
                     <div className="p-4 lg:p-6">
                         <h3 className="text-xl lg:text-2xl font-bold text-white mb-1">{featuredThinker.name}</h3>
                         <p className="text-xs lg:text-sm text-accent-gold uppercase tracking-widest font-medium mb-3">{featuredThinker.title}</p>
-                        <div className="flex gap-2">
-                             <span className="text-[10px] uppercase px-2 py-1 bg-white/5 rounded text-gray-400">#Politics</span>
-                             <span className="text-[10px] uppercase px-2 py-1 bg-white/5 rounded text-gray-400">#War</span>
+                        <div className="flex gap-2 flex-wrap">
+                             {featuredThinker.topics.slice(0, 2).map((topic, idx) => (
+                                <span key={idx} className="text-[10px] uppercase px-2 py-1 bg-white/5 rounded text-gray-400">#{topic}</span>
+                             ))}
                         </div>
                     </div>
                 </div>
