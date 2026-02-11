@@ -4,7 +4,7 @@
 
 ## Features
 
-- **Diverse Thinkers**: Debate with 20 legendary minds across history:
+- **Diverse Thinkers**: Debate with 40 legendary minds across history and fiction:
   - **Ancient Era**: Socrates, Plato, Confucius, Julius Caesar, Sun Tzu
   - **Medieval & Renaissance**: Dante Alighieri, William Shakespeare
   - **Enlightenment**: Immanuel Kant, Adam Smith, Benjamin Franklin
