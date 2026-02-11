@@ -36,11 +36,12 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, setView }) => {
       <nav className="flex-1 overflow-y-auto py-6 px-3">
         <NavItem view={ViewState.HOME} icon="home" label="Home" />
         <NavItem view={ViewState.LIBRARY} icon="library_books" label="Library" />
+        <NavItem view={ViewState.SCHOOL} icon="school" label="School" />
       </nav>
       
       <div className="p-6 text-xs text-gray-600 text-center border-t border-gray-800">
         <p>Guest Mode Active</p>
-        <p className="mt-1">Echoes of Wisdom v1.0</p>
+        <p className="mt-1">Echoes of Wisdom v3.0</p>
       </div>
     </aside>
   );
