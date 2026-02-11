@@ -11,10 +11,12 @@ const QuickDebate: React.FC<QuickDebateProps> = ({ onStart, onCancel }) => {
   const [selectedTopic, setSelectedTopic] = React.useState(QUICK_TOPICS[0]);
   
   const suggestedThinker = React.useMemo(() => {
-    if (selectedTopic.category === 'Technology') return THINKERS.find(t => t.id === 'turing') || THINKERS[0];
-    if (selectedTopic.category === 'Economics') return THINKERS.find(t => t.id === 'adam_smith') || THINKERS[0];
-    if (selectedTopic.category === 'Philosophy') return THINKERS.find(t => t.id === 'socrates') || THINKERS[0];
-    if (selectedTopic.category === 'Science') return THINKERS.find(t => t.id === 'nietzsche') || THINKERS[0];
+    // Use the suggestedThinkerId from the topic if available
+    if (selectedTopic.suggestedThinkerId) {
+      const thinker = THINKERS.find(t => t.id === selectedTopic.suggestedThinkerId);
+      if (thinker) return thinker;
+    }
+    // Fallback to first thinker
     return THINKERS[0];
   }, [selectedTopic]);
 
