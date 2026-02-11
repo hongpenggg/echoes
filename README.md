@@ -18,7 +18,12 @@
   - Historical source citations
   - Performance scoring
 - **Historical Context**: Learn about each thinker's background, era, and key contributions
-- **Quick Debate Mode**: Jump into debates on pre-selected topics
+- **Quick Debate Mode**: Jump into debates on 12 pre-selected topics with suggested opponents
+- **Featured Challenges Carousel**: Rotating challenges from 8 different thinkers on the home page
+- **Debate School**: Educational resource to master argumentation:
+  - 8 debate tactics (Socratic Method, Steelmanning, Reductio ad Absurdum, etc.)
+  - 12 logical fallacies with examples and counters
+  - 9 winning tips for better debates
 - **Results Dashboard**: Detailed performance metrics showing strengths and weaknesses
 
 ## Tech Stack
@@ -136,6 +141,44 @@ The repository is configured for automatic deployment to GitHub Pages using GitH
 - **Ruth Bader Ginsburg** (Modern) - Gender equality, constitutional law, civil rights
 - **Sun Tzu** (Ancient China) - Art of War, military strategy, tactics
 
+## Quick Debate Topics (12 Total)
+
+1. **The Morality of AI** - Technology debate with Alan Turing
+2. **Universal Basic Income** - Economics with Adam Smith
+3. **Stoicism in Modern Age** - Philosophy with Socrates
+4. **Ethics of Gene Editing** - Science with Albert Einstein
+5. **Art as Moral Force** - Literature with Victor Hugo
+6. **Free Will vs Determinism** - Psychology with Sigmund Freud
+7. **Democracy vs Authoritarianism** - Politics with Benjamin Franklin
+8. **Just War Theory** - War with Sun Tzu
+9. **Justice vs Mercy** - Law with Ruth Bader Ginsburg
+10. **Meaning of Suffering** - Philosophy with Friedrich Nietzsche
+11. **Leadership in Crisis** - Governance with Franklin D. Roosevelt
+12. **Tragedy and Human Condition** - Literature with William Shakespeare
+
+## Debate School Curriculum
+
+### Tactics (8 Techniques)
+- Socratic Method - Ask probing questions to expose contradictions
+- Steelmanning - Present the strongest version of opposing arguments
+- Reductio ad Absurdum - Show logical conclusions lead to absurdity
+- Appeal to Principles - Ground arguments in universal values
+- Burden of Proof - Shift responsibility for unfounded claims
+- Analogy and Metaphor - Make abstract concepts concrete
+- Concession and Counterattack - Acknowledge points while maintaining position
+- Historical Precedent - Use past examples to support arguments
+
+### Fallacies (12 Types)
+- Ad Hominem, Straw Man, False Dichotomy, Appeal to Authority
+- Slippery Slope, Circular Reasoning, Red Herring, Appeal to Emotion
+- Hasty Generalization, Post Hoc, No True Scotsman, Tu Quoque
+
+### Winning Tips (9 Strategies)
+- Listen actively, define terms early, use evidence
+- Stay calm and respectful, anticipate counterarguments
+- Know when to concede, structure arguments clearly
+- Ask clarifying questions, focus on core principles
+
 ## Mobile Features
 
 ### Phone Optimization
@@ -164,8 +207,9 @@ The repository is configured for automatic deployment to GitHub Pages using GitH
 echoes/
 ├── components/          # React components
 │   ├── DebateInterface.tsx    # Main debate UI (responsive)
-│   ├── Home.tsx               # Landing page (responsive)
+│   ├── Home.tsx               # Landing page with carousel (responsive)
 │   ├── Library.tsx            # Thinker exploration (responsive)
+│   ├── School.tsx             # Debate education page (responsive)
 │   ├── QuickDebate.tsx        # Quick debate mode (responsive)
 │   ├── Results.tsx            # Performance results (responsive)
 │   ├── Sidebar.tsx            # Navigation
@@ -176,7 +220,7 @@ echoes/
 │   └── workflows/
 │       └── deploy.yml         # GitHub Actions deployment
 ├── App.tsx             # Main app component (responsive navigation)
-├── constants.ts        # Thinker data and constants (20 thinkers)
+├── constants.ts        # Thinker data, topics, challenges (20 thinkers, 12 topics, 8 challenges)
 ├── types.ts            # TypeScript type definitions
 ├── vite.config.ts      # Vite configuration
 ├── RESPONSIVE_DESIGN.md # Responsive design documentation
@@ -189,7 +233,8 @@ echoes/
 2. **Start a Debate**: Pick a topic or let the thinker suggest one
 3. **Engage**: Present your arguments while the AI responds in character
 4. **Learn**: Review fallacy analysis, sources, and performance metrics in real-time
-5. **Improve**: Use AI feedback to strengthen your argumentation skills
+5. **Improve**: Use the Debate School to master tactics and avoid fallacies
+6. **Track Progress**: View detailed performance metrics showing strengths and weaknesses
 
 ## Development Notes
 
@@ -199,6 +244,7 @@ echoes/
 - No user authentication required - runs in guest mode for all users
 - Fully responsive with Tailwind CSS breakpoints (sm, md, lg, xl)
 - Mobile-first design approach
+- Featured challenges carousel auto-rotates every 5 seconds
 
 ## Troubleshooting
 
@@ -233,6 +279,7 @@ Contributions are welcome! Please feel free to submit issues or pull requests.
 - Performance optimizations
 - Accessibility enhancements
 - PWA features
+- Additional debate tactics and fallacies
 
 ## License
 
@@ -244,9 +291,10 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 - Powered by [OpenRouter](https://openrouter.ai) for AI capabilities
 - Built with modern web technologies for optimal performance
 - Responsive design inspired by mobile-first best practices
+- Debate tactics and fallacies based on classical rhetoric and logic
 
 ---
 
 **Live Demo**: [https://hongpenggg.github.io/echoes/](https://hongpenggg.github.io/echoes/)
 
-**Version**: 3.0 (20 Thinkers + Full Responsive Design)
+**Version**: 3.0 (20 Thinkers + Debate School + Featured Challenges Carousel + 12 Quick Topics)
