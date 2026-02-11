@@ -178,7 +178,7 @@ const School: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background-dark pb-16 lg:pb-0">
+    <div className="h-full overflow-y-auto custom-scrollbar bg-background-dark">
       {/* Header */}
       <div className="bg-surface-darker border-b border-gray-800 py-6 md:py-8 px-4 md:px-8">
         <div className="max-w-6xl mx-auto">
@@ -240,7 +240,7 @@ const School: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="max-w-6xl mx-auto px-4 md:px-8 py-6 md:py-8">
+      <div className="max-w-6xl mx-auto px-4 md:px-8 py-6 md:py-8 pb-20 md:pb-8">
         {activeTab === 'tactics' && (
           <div className="space-y-4 md:space-y-6">
             <div className="bg-primary/10 border border-primary/30 rounded-xl p-4 md:p-6">
