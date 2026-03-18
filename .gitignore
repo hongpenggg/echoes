@@ -39,3 +39,9 @@ coverage/
 *.log
 .turbo/
 .cache/
+
+# Patch files
+*.patch
+
+# Shell files
+*.sh

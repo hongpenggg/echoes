@@ -33,9 +33,7 @@ jobs:
 
       - name: Build
         env:
-          VITE_OPENROUTER_API_KEY_1: ${{ secrets.VITE_OPENROUTER_API_KEY_1 }}
-          VITE_OPENROUTER_API_KEY_2: ${{ secrets.VITE_OPENROUTER_API_KEY_2 }}
-          VITE_OPENROUTER_API_KEY_3: ${{ secrets.VITE_OPENROUTER_API_KEY_3 }}
+          GITHUB_PAGES: "true"
         run: npm run build
 
       - name: Add .nojekyll file
